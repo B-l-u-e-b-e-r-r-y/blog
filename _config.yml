@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-keywords:
-author: John Doe
-language:
+title: 一顆藍莓
+subtitle: 前端、後端、UI 設計筆記
+description: 我是一名前端工程師 :D
+keywords: Javascript, Angular, React, Node.js, MySQL, Figma, UI
+author: Blueberry
+language: zh
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://pclin2018.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
