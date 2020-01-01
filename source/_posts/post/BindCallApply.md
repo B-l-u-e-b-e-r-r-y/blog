@@ -1,11 +1,9 @@
 ---
 title: 使用 bind、call、apply 改變 this 指向的對象
 comments: true
-zoom_image: true
-# date: 2019-12-30 00:00:00
-# tags: Javascript
+date: 2019-12-30 00:00:00
+tags: Javascript
 ---
-# 使用 bind、call、apply 改變 this 指向的對象
 
 如果想要改變 this 指向的對象，可以透過 bind、call、apply 這三個 method 辦到。
 
