@@ -5,6 +5,8 @@ date: 2020-01-11 18:03:21
 tags: 
 - ES6
 - Javascript
+categories: 
+- Javascript
 ---
 
 這兩種運算子的寫法都是 ...，對，你沒看錯，就是三個點！

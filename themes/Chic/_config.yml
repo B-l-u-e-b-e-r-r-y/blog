@@ -16,7 +16,7 @@ nickname: Blueberry
 
 ### this variable is MarkDown form.
 description: 前端工程師，一年半開發經驗 :D
-avatar: /image/avatar.jpeg
+avatar: /image/avatar.jpg
 
 # main menu navigation
 ## links key words should not be changed.
@@ -63,7 +63,7 @@ post_author_enable: true
 post_date_enable: true
 post_category_enable: true
 ## Post copyright
-post_copyright_enable: true
+post_copyright_enable: false
 
 post_copyright_author_enable: true
 post_copyright_permalink_enable: true
