@@ -24,7 +24,6 @@ categories:
 
 除了在組件中寫入內容以外，組件本身也要加入 props.children 的屬性才會出現內容，
 如果沒有寫入任何內容，則 props.children 返回 null。
-請看範例程式碼：
 
 App.js
 ```js
