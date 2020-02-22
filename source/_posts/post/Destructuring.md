@@ -2,9 +2,11 @@
 title: Destructuring 解構賦值
 comments: true
 date: 2020-02-22 19:43:00
-tags: Javascript
-categories: 
+tags: 
+- Javascript
 - ES6
+- w3HexSchool
+categories: 
 - Javascript
 ---
 解構賦值可以用在陣列或物件，可以提取特定的值成獨立變數。
