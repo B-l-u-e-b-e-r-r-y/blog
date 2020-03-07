@@ -61,4 +61,4 @@ if (false === 0) {
     console.log(Not equal.);
 }
 ```
-結果會是 Not equal，**使用 `===` JavaScript 就不會進行強制型轉**，在兩個值是不同型態的情況下，結果會是 false。
+結果會是 Not equal，**使用 === JavaScript 就不會進行強制型轉**，在兩個值是不同型態的情況下，結果會是 false。
