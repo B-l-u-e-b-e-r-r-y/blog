@@ -33,7 +33,7 @@ getData();
 
 ## 使用 Promise 解決非同步調用
 那麼該如何解決呢？這時候就可以使用 Promise。
-建立 Promise 必須回傳 resolve(解決) 及 reject(拒絕)，當然只回傳 resolve 或 reject 也是可以的，它們類似於 `return` 的概念，寫在它們後面的程式碼不會被執行。
+建立 Promise 必須回傳 resolve(解決) 及 reject(拒絕)，當然只回傳 resolve 或 reject 也是可以的。
 ```js
 const promise = new Promise((resolve, reject) => {
     if (/* 任何條件 */) {
