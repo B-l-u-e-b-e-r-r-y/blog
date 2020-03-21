@@ -1,6 +1,8 @@
 ---
 title: Javascript ES6 Promise
 comments: true
+banner_img: /images/promise/banner.jpeg
+index_img: /images/promise/banner.jpeg
 date: 2020-03-14 00:00:00
 tags: 
 - ES6

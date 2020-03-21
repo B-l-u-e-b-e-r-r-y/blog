@@ -1,6 +1,8 @@
 ---
 title: Destructuring 解構賦值
 comments: true
+banner_img: /images/js_banner.jpeg
+index_img: /images/js_banner.jpeg
 date: 2020-02-22 19:43:00
 tags: 
 - Javascript

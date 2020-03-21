@@ -1,6 +1,8 @@
 ---
 title: 比較運算子
 comments: true
+banner_img: /images/js_banner.jpeg
+index_img: /images/js_banner.jpeg
 date: 2020-02-29 23:01:00
 tags: 
 - Javascript

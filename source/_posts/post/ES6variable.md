@@ -1,6 +1,8 @@
 ---
 title: var、let、const 的區別
 comments: true
+banner_img: /images/js_banner.jpeg
+index_img: /images/js_banner.jpeg
 date: 2019-11-27 16:03:21
 tags: 
 - ES6

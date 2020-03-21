@@ -1,6 +1,8 @@
 ---
 title: 使用 bind、call、apply 改變 this 指向的對象
 comments: true
+banner_img: /images/js_banner.jpeg
+index_img: /images/js_banner.jpeg
 date: 2019-12-30 00:00:00
 tags: Javascript
 categories: 

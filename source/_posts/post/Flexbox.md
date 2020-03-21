@@ -1,6 +1,8 @@
 ---
 title: CSS 排版神器 Flexbox
 comments: true
+banner_img: /images/code_banner.jpg
+index_img: /images/code_banner.jpg
 date: 2020-02-15 23:10:00
 tags: 
 - w3HexSchool

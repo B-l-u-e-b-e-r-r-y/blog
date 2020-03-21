@@ -1,6 +1,8 @@
 ---
 title: 展開運算子(Spread Operator)與其餘運算子(Rest Operator)
 comments: true
+banner_img: /images/js_banner.jpeg
+index_img: /images/js_banner.jpeg
 date: 2020-01-11 18:03:21
 tags: 
 - ES6

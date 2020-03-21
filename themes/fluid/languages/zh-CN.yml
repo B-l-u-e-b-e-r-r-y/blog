@@ -1,0 +1,42 @@
+search:
+  title: 搜尋
+  keyword: 關鍵詞
+  status:
+    success: v
+    error: x
+
+postTotal: 共計 %d 篇文章
+
+paginator:
+  pre: 上一頁
+  next: 下一頁
+
+post:
+  toc: 目錄
+
+home:
+  title: 首頁
+
+archive:
+  title: 歸檔
+  subtitle: 歸檔
+
+tag:
+  title: 標籤
+  subtitle: 標籤
+
+category:
+  title: 分類
+  subtitle: 分類
+
+about:
+  title: 關於
+  subtitle: 關於
+
+page404:
+  title: 404 Error
+  subtitle: 404 Error
+
+links:
+  title: 友情連結
+  subtitle: 友情連結

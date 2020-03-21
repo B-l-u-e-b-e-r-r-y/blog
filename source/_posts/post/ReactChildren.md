@@ -1,6 +1,8 @@
 ---
 title: React Children 屬性
 comments: true
+banner_img: /images/react_banner.png
+index_img: /images/react_banner.png
 date: 2020-02-05 20:24:00
 tags: 
 - w3HexSchool

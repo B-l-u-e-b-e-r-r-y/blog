@@ -1,6 +1,8 @@
 ---
 title: 簡單整理 Git 常用指令
 comments: true
+banner_img: /images/git/banner.jpeg
+index_img: /images/git/banner.jpeg
 date: 2020-03-07 20:44:00
 tags: 
 - Git
