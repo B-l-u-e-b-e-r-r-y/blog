@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://pclin2018.github.io/
+url: https://b-l-u-e-b-e-r-r-y.github.io/
 root: /
 permalink: :title/
 permalink_defaults:
@@ -26,7 +26,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: /source/google0cc10fba780cd465.html
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -110,3 +110,7 @@ valine:
   verify: false # true/false:verify code
   avatar: mm # avatar style https://github.com/xCss/Valine/wiki/avatar-setting-for-valine
   placeholder: Just go go # comment box placeholder
+
+#Sitemap
+sitemap:
+    path: sitemap.xml
