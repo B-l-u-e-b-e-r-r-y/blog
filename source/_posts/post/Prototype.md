@@ -75,3 +75,8 @@ console.log(blueberry.firstname);      // Blueberry
 假設我有兩個物件，blueberry 繼承了 person，所以當我想呼叫 `blueberry.getFullName()` 時，也理所當然可以使用這個方法，因為繼承就是讓一個物件可以使用原型物件的所有屬性和方法。
 
 但是為什麼 `blueberry.firstname` 的結果會是 'Blueberry' 而不是原型物件的 'Default'？這是因為 Javascript 引擎先在 blueberry 這個主物件中找到了 firstname 屬性，所以就不會繼續往原型鍊尋找。
+
+---------------------------------------
+
+參考資料：
+[《JavaScript 全攻略：克服 JS 的奇怪部分》](https://www.udemy.com/course/javascriptjs/)
