@@ -1,9 +1,9 @@
 ---
-title: 【用 JS 寫一個 Discord Bot！】02 建立機器人
+title: 【用 JS 寫一個 Discord Bot！】02 音樂機器人
 comments: true
 banner_img: /images/dc_banner.jpg
 index_img: /images/dc_banner.jpg
-date: 2020-05-16 18:00:00
+date: 2020-05-17 23:00:00
 tags: 
 - node.js
 - Discord.js
@@ -19,8 +19,8 @@ categories:
 
 今天我們來寫一個具有以下功能的音樂機器人：
 * 播放 YouTube 歌曲
-* 暫停播放
-* 結束歌曲
+* 暫停/恢復播放
+* 跳過歌曲
 * 歌曲隊列
 
 如果還不知道怎麼建立機器人，可以參考我之前寫的這篇文章：[【用 JS 寫一個 Discord Bot！】01 建立機器人](https://b-l-u-e-b-e-r-r-y.github.io/post/DiscordBot01/)。
@@ -49,29 +49,251 @@ $ npm install @discordjs/opus
 $ npm install ytdl-core
 ```
 
-## 編寫 js
-
-沿用[之前建立好的環境](https://b-l-u-e-b-e-r-r-y.github.io/post/DiscordBot01/#%E5%BB%BA%E7%AB%8B%E5%9F%BA%E7%A4%8E%E7%92%B0%E5%A2%83)，我們以 `discord.js` 為基礎編寫。
+## 開始編寫
 
 ### 建立 config.json
 
-在開始之前，我們先在專案中建立 config.json，放一些常用的配置。
+在開始之前，我們先在專案中建立 config.json，放一些常用配置。
 
-`prefix` 設定前綴字，`command` 設定常用指令，兩者搭配起來就是 `!!play`、`!!pause`。
+`prefix` 設定指令的前綴字。
 
 ```json
-
+{
+    "prefix": "!!"
+}
 ```
 
 ### 編寫 discord.js
 
-#### 播放 YouTube 歌曲
-
 ```js
+const { Client } = require('discord.js');
+const ytdl = require('ytdl-core');
+const { token } = require('./token.json');
+const { prefix } = require('./config.json');
+const client = new Client();
 
+// 建立一個類別來管理 Property 及 Method
+class Music {
+
+    constructor() {
+        this.isPlaying = false;
+        this.queue = {};
+        this.connection = {};
+        this.dispatcher = {};
+    }
+
+    async join(msg) {
+
+        // Bot 加入語音頻道
+        this.connection[msg.guild.id] = await msg.member.voice.channel.join();
+
+    }
+
+    play(msg) {
+
+        // 語音群的 ID
+        const guildID = msg.guild.id;
+
+        // 如果 Bot 還沒加入該語音群的語音頻道
+        if (!this.connection[guildID]) {
+            msg.channel.send('請先加入頻道');
+            return;
+        }
+
+        // 處理字串，將 !!play 字串拿掉，只留下 YouTube 網址
+        const musicURL = msg.content.replace(`${prefix}play`, '');
+
+        // 取得 YouTube 影片名稱
+        const self = this;
+        ytdl.getInfo(musicURL, (err, info) => {
+
+            if (err) return;
+
+            // 將歌曲資訊加入隊列
+            if (!self.queue[guildID]) {
+                self.queue[guildID] = [];
+            }
+
+            self.queue[guildID].push({
+                name: info.title,
+                url: musicURL
+            });
+
+            // 如果目前正在播放歌曲就加入隊列，反之則播放歌曲
+            if (self.isPlaying) {
+                msg.channel.send(`歌曲加入隊列：${info.title}`);
+            } else {
+                self.isPlaying = true;
+                self.playMusic(msg, guildID, self.queue[guildID][0]);
+            }
+            
+        });
+
+    }
+
+    playMusic(msg, guildID, musicInfo) {
+
+        // 提示播放音樂
+        msg.channel.send(`播放音樂：${musicInfo.name}`);
+
+        // 播放音樂
+        this.dispatcher[guildID] = this.connection[guildID].play(ytdl(musicInfo.url, { filter: 'audioonly' }));
+
+        // 把音量降 50%，不然第一次容易被機器人的音量嚇到 QQ
+        this.dispatcher[guildID].setVolume(0.5);
+
+        // 移除 queue 中目前播放的歌曲
+        this.queue[guildID].shift();
+
+        // 歌曲播放結束時的事件
+        const self = this;
+        this.dispatcher[guildID].on('finish', () => {
+
+            // 如果隊列中有歌曲
+            if (self.queue[guildID].length > 0) {
+                self.playMusic(msg, guildID, self.queue[guildID].shift());
+            } else {
+                self.isPlaying = false;
+                msg.channel.send('目前沒有音樂了，請加入音樂 :D');
+            }
+
+        });
+
+    }
+
+    resume(msg) {
+
+        if (this.dispatcher[msg.guild.id]) {
+            msg.channel.send('恢復播放');
+
+            // 恢復播放
+            this.dispatcher[msg.guild.id].resume();
+        }
+
+    }
+
+    pause(msg) {
+
+        if (this.dispatcher[msg.guild.id]) {
+            msg.channel.send('暫停播放');
+
+            // 暫停播放
+            this.dispatcher[msg.guild.id].pause();
+        }
+
+    }
+
+    skip(msg) {
+
+        if (this.dispatcher[msg.guild.id]) {
+            msg.channel.send('跳過目前歌曲');
+
+            // 跳過歌曲
+            this.dispatcher[msg.guild.id].end();
+        }
+
+    }
+
+    nowQueue(msg) {
+
+        // 如果隊列中有歌曲就顯示
+        if (this.queue[msg.guild.id] && this.queue[msg.guild.id].length > 0) {
+            // 字串處理，將 Object 組成字串
+            const queueString = this.queue[msg.guild.id].map((item, index) => `[${index+1}] ${item.name}`).join();
+            msg.channel.send(queueString);
+        } else {
+            msg.channel.send('目前隊列中沒有歌曲');
+        }
+
+    }
+
+    leave(msg) {
+
+        // 離開頻道
+        this.connection[msg.guild.id].disconnect();
+
+    }
+}
+
+const music = new Music();
+
+// 當 Bot 接收到訊息時的事件
+client.on('message', async (msg) => {
+
+    // 如果發送訊息的地方不是語音群（可能是私人），就 return
+    if (!msg.guild) return;
+
+    // !!join
+    if (msg.content === `${prefix}join`) {
+
+        // 機器人加入語音頻道
+        music.join(msg);
+    }
+
+    // 如果使用者輸入的內容中包含 !!play
+    if (msg.content.indexOf(`${prefix}play`) > -1) {
+
+        // 如果使用者在語音頻道中
+        if (msg.member.voice.channel) {
+
+            // 播放音樂
+            music.play(msg);
+        } else {
+
+            // 如果使用者不在任何一個語音頻道
+            msg.reply('你必須先加入語音頻道');
+        }
+    }
+
+    // !!resume
+    if (msg.content === `${prefix}resume`) {
+
+        // 恢復音樂
+        music.resume(msg);
+    }
+
+    // !!pause
+    if (msg.content === `${prefix}pause`) {
+
+        // 暫停音樂
+        music.pause(msg);
+    }
+
+    // !!skip
+    if (msg.content === `${prefix}skip`) {
+
+        // 跳過音樂
+        music.skip(msg);
+    }
+
+    // !!queue
+    if (msg.content === `${prefix}queue`) {
+
+        // 查看隊列
+        music.nowQueue(msg);
+    }
+
+    // !!leave
+    if (msg.content === `${prefix}leave`) {
+
+        // 機器人離開頻道
+        music.leave(msg);
+    }
+});
+
+// 連上線時的事件
+client.on('ready', () => {
+    console.log(`Logged in as ${client.user.tag}!`);
+});
+
+client.login(token);
 ```
 
-這時候就可以運行看看。
+寫完後就可以運行看看。
+
+操作流程是先 `!!join` 讓機器人加入語音頻道→ `!!play 音樂網址` 播放音樂或加入隊列（如果音樂正在播放）。
+
+其他的功能如【暫停播放】`!!pause`、【恢復播放】`!!resume`、【跳過這首歌曲】`!!skip`、【查看歌曲隊列】`!!queue`、【讓機器人離開語音頻道】`!!leave`，可以自行玩玩看。
 
 ```
 $ node discord.js
@@ -79,13 +301,13 @@ $ node discord.js
 
 ![](/images/dc-bot/02/01.jpg)
 
-#### 暫停播放
+本來想把程式碼切開在文中講解，但是發現這樣寫起來會篇幅太長而且雜亂，所以就乾脆把註解寫在 code 裡面。
 
+本次音樂機器人的 [Github Repo](https://github.com/B-l-u-e-b-e-r-r-y/Discord-Bot-02)，可以自行 clone 下來研究或修改。
 
+------------------------------------------
 
-#### 結束歌曲
+**【用 JS 寫一個 Discord Bot！】系列文章**
 
-
-
-
-#### 歌曲隊列
+[【用 JS 寫一個 Discord Bot！】01 建立機器人](https://b-l-u-e-b-e-r-r-y.github.io/post/DiscordBot01/)
+[【用 JS 寫一個 Discord Bot！】02 音樂機器人](https://b-l-u-e-b-e-r-r-y.github.io/post/DiscordBot02/)
