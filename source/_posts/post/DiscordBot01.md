@@ -84,7 +84,7 @@ Token 在 Bot 頁面複製：
 於專案中新增 discord.js，這邊我們使用 [Discord.js](https://github.com/discordjs/discord.js/) 的官方範例。
 ```js
 const Discord = require('discord.js');
-const config = require('./token.json');
+const { token } = require('./token.json');
 const client = new Discord.Client();
 
 // 連上線時的事件
@@ -101,7 +101,7 @@ client.on('message', msg => {
     }
 });
 
-client.login(config.token);
+client.login(token);
 ```
 
 ### 4. 運行程式
