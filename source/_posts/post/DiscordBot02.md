@@ -89,7 +89,7 @@ class Music {
 
     }
 
-    play(msg) {
+    async play(msg) {
 
         // 語音群的 ID
         const guildID = msg.guild.id;
@@ -103,31 +103,33 @@ class Music {
         // 處理字串，將 !!play 字串拿掉，只留下 YouTube 網址
         const musicURL = msg.content.replace(`${prefix}play`, '');
 
-        // 取得 YouTube 影片名稱
-        const self = this;
-        ytdl.getInfo(musicURL, (err, info) => {
+        try {
 
-            if (err) return;
+            // 取得 YouTube 影片資訊
+            const res = await ytdl.getInfo(musicURL);
+            const info = res.videoDetails;
 
             // 將歌曲資訊加入隊列
-            if (!self.queue[guildID]) {
-                self.queue[guildID] = [];
+            if (!this.queue[guildID]) {
+                this.queue[guildID] = [];
             }
 
-            self.queue[guildID].push({
+            this.queue[guildID].push({
                 name: info.title,
                 url: musicURL
             });
 
             // 如果目前正在播放歌曲就加入隊列，反之則播放歌曲
-            if (self.isPlaying) {
+            if (this.isPlaying) {
                 msg.channel.send(`歌曲加入隊列：${info.title}`);
             } else {
-                self.isPlaying = true;
-                self.playMusic(msg, guildID, self.queue[guildID][0]);
+                this.isPlaying = true;
+                this.playMusic(msg, guildID, this.queue[guildID][0]);
             }
-            
-        });
+
+        } catch(e) {
+            console.log(e);
+        }
 
     }
 
@@ -237,7 +239,7 @@ client.on('message', async (msg) => {
         if (msg.member.voice.channel) {
 
             // 播放音樂
-            music.play(msg);
+            await music.play(msg);
         } else {
 
             // 如果使用者不在任何一個語音頻道
@@ -293,17 +295,30 @@ client.login(token);
 
 操作流程是先 `!!join` 讓機器人加入語音頻道→ `!!play 音樂網址` 播放音樂或加入隊列（如果音樂正在播放）。
 
-其他的功能如【暫停播放】`!!pause`、【恢復播放】`!!resume`、【跳過這首歌曲】`!!skip`、【查看歌曲隊列】`!!queue`、【讓機器人離開語音頻道】`!!leave`，可以自行玩玩看。
+功能如下：
+* 【機器人加入語音】`!!join`
+* 【播放音樂（加入隊列）】`!!play 音樂網址`
+* 【暫停播放】`!!pause`
+* 【恢復播放】`!!resume`
+* 【跳過這首歌曲】`!!skip`
+* 【查看歌曲隊列】`!!queue`
+* 【讓機器人離開語音頻道】`!!leave`
+
+可以自行玩玩看。
 
 ```
 $ node discord.js
 ```
 
-![](/images/dc-bot/02/01.jpg)
+![](/images/dc-bot/02/02.jpg)
 
 本來想把程式碼切開在文中講解，但是發現這樣寫起來會篇幅太長而且雜亂，所以就乾脆把註解寫在 code 裡面。
 
 本次音樂機器人的 [Github Repo](https://github.com/B-l-u-e-b-e-r-r-y/Discord-Bot-02)，可以自行 clone 下來研究或修改。
+
+## 2021/01/13 更新
+
+發現之前會有無法播放的問題，已更新 ytdl 套件解決問題，如果還有問題歡迎在下方留言
 
 ------------------------------------------
 
