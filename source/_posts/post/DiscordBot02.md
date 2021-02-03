@@ -101,7 +101,7 @@ class Music {
         }
 
         // 處理字串，將 !!play 字串拿掉，只留下 YouTube 網址
-        const musicURL = msg.content.replace(`${prefix}play`, '');
+        const musicURL = msg.content.replace(`${prefix}play`, '').trim();
 
         try {
 
@@ -318,7 +318,18 @@ $ node discord.js
 
 ## 2021/01/13 更新
 
-發現之前會有無法播放的問題，已更新 ytdl 套件解決問題，如果還有問題歡迎在下方留言
+發現之前會有無法播放的問題，已更新 ytdl 套件解決問題
+
+## 2021/02/03 更新
+
+發現更新 ytdl 套件後會無法播放音樂的問題，因為 `musicURL` 字串的空格沒處理乾淨
+```js
+const musicURL = msg.content.replace(`${prefix}play`, '');
+```
+改為：
+```js
+const musicURL = msg.content.replace(`${prefix}play`, '').trim();
+```
 
 ------------------------------------------
 
