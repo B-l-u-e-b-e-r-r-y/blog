@@ -34,18 +34,15 @@ callName();
    Hello undefined */
 ```
 
-因為 callName() 函式中的 this 指向的是 global object（也就是 Window 物件），
-所以這時候我們希望把 callName() 的 this 指向 person 這個對象，可以使用以下方法：
+因為 callName() 函式中的 this 指向的是 global object（也就是 Window 物件），所以這時候我們希望把 callName() 的 this 指向 person 這個對象，可以使用以下方法：
 
 ## bind
 [MDN](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 *function.bind(thisArg[, arg1[, arg2[, ...]]])*
 
 bind 和其他兩個方法（call、apply）的不同有兩點：
-1. bind 是創造一個函式物件的拷貝，不會執行函式，因此 bind 之後還要再另外寫執行函式的動作；
-call、apply 是直接執行函式。
-2. bind 後面傳入的參數值**會設定為拷貝函式的永久參數值**，之後執行拷貝函式時，無論怎麼給予參數都沒有用；
-call、apply 則是單純給予參數，像一般呼叫函式那樣。
+1. bind 是創造一個函式物件的拷貝，不會執行函式，因此 bind 之後還要再另外寫執行函式的動作；而 call、apply 是直接執行函式。
+2. bind 後面傳入的參數值**會設定為拷貝函式的永久參數值**，之後執行拷貝函式時，無論怎麼給予參數都沒有用；而 call、apply 則是單純給予參數，像一般呼叫函式那樣。
 
 我們先單純就第一點來說明，示範最基本的 bind 怎麼寫。
 
@@ -133,8 +130,7 @@ callName.call(person, 24, 'Reading books');
 [MDN](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)
 *function.apply(this, [arg1, arg2..., argn])*
 
-apply 的寫法跟 call 很相近，與 call 不同的是，
-後面的參數需要使用陣列傳遞，適合搭配 arguments 運用在算數的函式。
+apply 的寫法跟 call 很相近，與 call 不同的是，後面的參數需要使用陣列傳遞，適合搭配 arguments 運用在算數的函式。
 
 ```js
 callName.apply(person, [24, 'Reading books']);

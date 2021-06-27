@@ -25,8 +25,6 @@ categories:
 
 ## 不透明的單例模式
 
-### ES5
-
 ```js
 const Singleton = function(name) {
     this.name = name;
@@ -38,23 +36,6 @@ Singleton.getInstance = function(name) {
         this.instance = new Singleton(name);
     }
     return this.instance;
-}
-```
-
-### ES6
-
-```js
-class Singleton {
-    constructor(name) {
-        this.name = name;
-    }
-        
-    static getInstance(name) {
-        if (!this.instance) {
-            this.instance = new Singleton(name);
-        }
-        return this.instance;
-    }
 }
 ```
 
@@ -71,8 +52,6 @@ console.log(a === b);  // true
 ## 透明的單例模式
 
 一個透明的單例，使用者可以像使用其他任何普通類別一樣，能透過 `new XXX()` 來獲得物件。下面的例子使用 CreateDiv 的單例類別來建立唯一的 div 節點，這個例子使用閉包來保存 `instance` 變數。
-
-### ES5
 
 ```js
 const CreateDiv = (function() {
@@ -101,39 +80,12 @@ const b = new CreateDiv('b');
 console.log(a === b);  // true
 ```
 
-### ES6
-
-```js
-class CreateDiv {
-    constructor(html) {
-        if (!CreateDiv.instance) {
-            this.html = html;
-            this.init();
-            CreateDiv.instance = this;
-        }
-
-        return CreateDiv.instance;
-    }
-        
-    init() {
-        const div = document.createElement('div');
-        div.innerHTML = this.html;
-        document.body.appendChild(div);
-    }
-}
-
-const a = new CreateDiv('a');
-const b = new CreateDiv('b');
-console.log(a === b);  // true
-```
-
 這段程式碼其實沒有什麼問題，但在 createDiv 這個匿名函數裡同時做了兩件事：管理單例及建立 div，根據[單一職責原則](https://zh.wikipedia.org/wiki/%E5%8D%95%E4%B8%80%E5%8A%9F%E8%83%BD%E5%8E%9F%E5%88%99)這樣的代碼應該盡量避免。所以後面會使用[代理模式](https://zh.wikipedia.org/wiki/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F)來改善這段代碼。
 
 ## 用代理模式實作單例
 
 這裡把管理單例的邏輯移到代理類別 proxySingleCreateDiv，和建立 div 的邏輯分開，這樣的代碼符合了單一職責原則，也更具可讀性。
 
-### ES5
 ```js
 const CreateDiv = function(html) {
     this.html = html;
@@ -155,36 +107,6 @@ const proxySingleCreateDiv = (function() {
         return instance;
     }
 })();
-
-const a = new proxySingleCreateDiv('a');
-const b = new proxySingleCreateDiv('b');
-console.log(a === b);  // true
-```
-
-### ES6
-
-```js
-class CreateDiv {
-    constructor(html) {
-        this.html = html;
-        this.init();
-    }
-        
-    init() {
-        const div = document.createElement('div');
-        div.innerHTML = this.html;
-        document.body.appendChild(div);
-    }
-}
-
-class proxySingleCreateDiv {
-    constructor(html) {
-        if (!proxySingleCreateDiv.instance) {
-            proxySingleCreateDiv.instance = new CreateDiv(html);
-        }
-        return proxySingleCreateDiv.instance;
-    }
-}
 
 const a = new proxySingleCreateDiv('a');
 const b = new proxySingleCreateDiv('b');
@@ -394,4 +316,5 @@ document.getElementById('loginBtn').onclick = function() {
 ---------------------------------------
 
 參考資料：
+
 [JavaScript設計模式與開發實踐](https://www.books.com.tw/products/0010687594)

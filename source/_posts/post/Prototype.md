@@ -79,4 +79,5 @@ console.log(blueberry.firstname);      // Blueberry
 ---------------------------------------
 
 參考資料：
+
 [《JavaScript 全攻略：克服 JS 的奇怪部分》](https://www.udemy.com/course/javascriptjs/)

@@ -131,4 +131,5 @@ const arr4 = mapForEach(arr1, pastNumberSimplify(2));  // [2, 4, 6]
 ---------------------------------------
 
 參考資料：
+
 [《JavaScript 全攻略：克服 JS 的奇怪部分》](https://www.udemy.com/course/javascriptjs/)

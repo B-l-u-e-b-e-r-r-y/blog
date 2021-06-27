@@ -84,8 +84,13 @@ class Music {
 
     async join(msg) {
 
-        // Bot 加入語音頻道
-        this.connection[msg.guild.id] = await msg.member.voice.channel.join();
+        // 如果使用者正在頻道中
+        if (msg.member.voice.channel !== null) {
+            // Bot 加入語音頻道
+            this.connection[msg.guild.id] = await msg.member.voice.channel.join();
+        } else {
+            msg.channel.send('請先進入語音頻道');
+        }
 
     }
 
@@ -96,7 +101,13 @@ class Music {
 
         // 如果 Bot 還沒加入該語音群的語音頻道
         if (!this.connection[guildID]) {
-            msg.channel.send('請先加入頻道');
+            msg.channel.send('請先將機器人 `!!join` 加入頻道');
+            return;
+        }
+
+        // 如果 Bot leave 後又未加入語音頻道
+        if (this.connection[guildID].status === 4) {
+            msg.channel.send('請先將機器人 `!!join` 重新加入頻道');
             return;
         }
 
@@ -211,8 +222,24 @@ class Music {
 
     leave(msg) {
 
-        // 離開頻道
-        this.connection[msg.guild.id].disconnect();
+        // 如果機器人在頻道中
+        if (this.connection[msg.guild.id] && this.connection[msg.guild.id].status === 0) {
+
+            // 如果機器人有播放過歌曲
+            if (this.queue.hasOwnProperty(msg.guild.id)) {
+
+                // 清空播放列表
+                delete this.queue[msg.guild.id];
+
+                // 改變 isPlaying 狀態為 false
+                this.isPlaying[msg.guild.id] = false;
+            }
+
+            // 離開頻道
+            this.connection[msg.guild.id].disconnect();
+        } else {
+            msg.channel.send('機器人未加入任何頻道');
+        }
 
     }
 }
@@ -302,7 +329,7 @@ client.login(token);
 * 【恢復播放】`!!resume`
 * 【跳過這首歌曲】`!!skip`
 * 【查看歌曲隊列】`!!queue`
-* 【讓機器人離開語音頻道】`!!leave`
+* 【讓機器人離開語音頻道（會清空歌曲隊列）】`!!leave`
 
 可以自行玩玩看。
 
@@ -314,17 +341,17 @@ $ node discord.js
 
 本來想把程式碼切開在文中講解，但是發現這樣寫起來會篇幅太長而且雜亂，所以就乾脆把註解寫在 code 裡面。
 
-本次音樂機器人的 [Github Repo](https://github.com/B-l-u-e-b-e-r-r-y/Discord-Bot-02)，可以自行 clone 下來研究或修改。
+本次音樂機器人的 [Github Repository](https://github.com/B-l-u-e-b-e-r-r-y/Discord-Bot-02)，可以自行 clone 下來研究或修改。
 
 # 更新
 
 ## 2021/01/13 更新
 
-發現之前會有無法播放的問題，已更新 ytdl 套件解決問題
+發現之前會有無法播放的問題，已更新 ytdl 套件解決問題。
 
 ## 2021/02/03 更新
 
-發現更新 ytdl 套件後會無法播放音樂的問題，因為 `musicURL` 字串的空格沒處理乾淨
+發現更新 ytdl 套件後會無法播放音樂的問題，因為 `musicURL` 字串的空格沒處理乾淨：
 ```js
 const musicURL = msg.content.replace(`${prefix}play`, '');
 ```
@@ -335,13 +362,23 @@ const musicURL = msg.content.replace(`${prefix}play`, '').trim();
 
 ## 2021/05/30 更新
 
-發現機器人無法於不同伺服器播放歌曲的問題，是因為原本的 `isPlaying` 變數忘了寫成物件，變成多個伺服器共用一個變數
+發現機器人無法於不同伺服器播放歌曲的問題，是因為原本的 `isPlaying` 變數忘了寫成物件，變成多個伺服器共用一個變數。
 ```js
 this.isPlaying = false;
 ```
 改為：
 ```js
 this.isPlaying = {};  // { guild1ID: false, guild2ID: true, ... }
+```
+
+## 2021/06/27 更新
+
+加入一些防呆機制以及更新套件版本。
+
+舊朋友如果有遇到問題，請試著更新 [node-ytdl-core](https://github.com/fent/node-ytdl-core) 為最新版本（4.8.3）：
+
+```
+npm install ytdl-core@latest
 ```
 
 ------------------------------------------

@@ -179,8 +179,8 @@ align-self: flex-start | flex-end | center | stretch | baseline;
 * `stretch`：子元素撐開與父元素同高
 * `baseline`：依元素的基準線對齊
 
-這邊我直接拿上面的 `align-items` 的範例來改，
-可以看到 2 號橘色方塊被我設定為 `align-center: center`，所以不管怎麼排序，橘色方塊都會垂直置中。
+這邊我直接拿上面的 `align-items` 的範例來改，可以看到 2 號橘色方塊被我設定為 `align-center: center`，所以不管怎麼排序，橘色方塊都會垂直置中。
+
 範例程式碼：
 <p class="codepen" data-height="265" data-theme-id="default" data-default-tab="html,result" data-user="Priscilla_Lin" data-slug-hash="ExjPjYB" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="align-self">
   <span>See the Pen <a href="https://codepen.io/Priscilla_Lin/pen/ExjPjYB">
@@ -223,6 +223,7 @@ flex-grow: <number>;
 
 當子元素的總寬度**不超過**父元素時，`flex-grow` 會分配剩餘的空間給特定子元素。
 `flex-grow` 的預設值為 0，設定 1 以上的值會進行彈性變化。
+
 範例程式碼：
 <p class="codepen" data-height="265" data-theme-id="default" data-default-tab="css,result" data-user="Priscilla_Lin" data-slug-hash="poJgMoN" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="flex-grow">
   <span>See the Pen <a href="https://codepen.io/Priscilla_Lin/pen/poJgMoN">
@@ -240,6 +241,7 @@ flex-shrink: <number>;
 
 當子元素的總寬度**超過**父元素時，`flex-shrink` 會將特定子元素的寬度依比例縮減。
 `flex-shrink` 的預設值為 1，設為 0 的話不會進行彈性變化。
+
 範例程式碼：
 <p class="codepen" data-height="265" data-theme-id="default" data-default-tab="css,result" data-user="Priscilla_Lin" data-slug-hash="zYGqOvb" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="flex-shrink">
   <span>See the Pen <a href="https://codepen.io/Priscilla_Lin/pen/zYGqOvb">
@@ -255,10 +257,12 @@ flex-shrink: <number>;
 flex-basis: <number>;
 ```
 
-`flex-basis` 會指定子元素在 main axis (主軸)上的初始大小。
-如果 `flex-direction: row` 則更改子元素寬度，反之，
-如果 `flex-direction: column` 則更改子元素高度。
+`flex-basis` 會指定子元素在主軸 (main axis) 上的初始大小。
+
+`flex-direction: row` 為更改子元素寬度，反之 `flex-direction: column` 則更改子元素高度。
+
 `flex-basis` 的預設值為 0，也可以設定為 auto，表示以子元素自己的大小為基準。
+
 範例程式碼：
 <p class="codepen" data-height="265" data-theme-id="default" data-default-tab="css,result" data-user="Priscilla_Lin" data-slug-hash="BaNKBjZ" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="flex-basis">
   <span>See the Pen <a href="https://codepen.io/Priscilla_Lin/pen/BaNKBjZ">
