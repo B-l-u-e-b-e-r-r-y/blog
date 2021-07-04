@@ -70,7 +70,6 @@ flex-direction: row<default> | row-reverse | column | column-reverese;
   flex-direction</a> by Priscilla Lin (<a href="https://codepen.io/Priscilla_Lin">@Priscilla_Lin</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ---------------------------------------
 
@@ -90,7 +89,6 @@ flex-wrap: nowrap<default> | wrap | wrap-reverse;
   flex-wrap</a> by Priscilla Lin (<a href="https://codepen.io/Priscilla_Lin">@Priscilla_Lin</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ---------------------------------------
 
@@ -115,7 +113,6 @@ justify-content: flex-start<default> | flex-end | center | space-between | space
   justify-content</a> by Priscilla Lin (<a href="https://codepen.io/Priscilla_Lin">@Priscilla_Lin</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ---------------------------------------
 
@@ -138,7 +135,6 @@ align-items: flex-start | flex-end | center | stretch<default> | baseline;
   align-items</a> by Priscilla Lin (<a href="https://codepen.io/Priscilla_Lin">@Priscilla_Lin</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ---------------------------------------
 
@@ -161,7 +157,6 @@ align-content: flex-start | flex-end | center | stretch<default> | space-between
   align-content</a> by Priscilla Lin (<a href="https://codepen.io/Priscilla_Lin">@Priscilla_Lin</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ---------------------------------------
 
@@ -187,7 +182,6 @@ align-self: flex-start | flex-end | center | stretch | baseline;
   align-self</a> by Priscilla Lin (<a href="https://codepen.io/Priscilla_Lin">@Priscilla_Lin</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ---------------------------------------
 
@@ -204,7 +198,6 @@ order: <number>;
   order</a> by Priscilla Lin (<a href="https://codepen.io/Priscilla_Lin">@Priscilla_Lin</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ---------------------------------------
 
@@ -230,7 +223,6 @@ flex-grow: <number>;
   flex-grow</a> by Priscilla Lin (<a href="https://codepen.io/Priscilla_Lin">@Priscilla_Lin</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ---------------------------------------
 
@@ -248,7 +240,6 @@ flex-shrink: <number>;
   flex-shrink</a> by Priscilla Lin (<a href="https://codepen.io/Priscilla_Lin">@Priscilla_Lin</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ---------------------------------------
 

@@ -29,7 +29,7 @@ categories:
 
 ## 安裝套件
 
-要完成這些功能，必須安裝下面這三個套件。
+要完成這些功能，除了需要 [Discord.js](https://github.com/discordjs/discord.js/) 套件以外，還必須安裝下面這三個套件。
 
 * ### [ffmpeg-static](https://github.com/eugeneware/ffmpeg-static)
 執行音樂的轉檔、串流功能
@@ -76,9 +76,36 @@ const client = new Client();
 class Music {
 
     constructor() {
+        /**
+         * 下面的物件都是以 Discord guild id 當 key，例如：
+         * this.isPlaying = {
+         *     724145832802385970: false
+         * }
+         */
+
+        /**
+         * 機器人是否正在播放音樂
+         * this.isPlaying = {
+         *     724145832802385970: false
+         * }
+         */
         this.isPlaying = {};
+
+        /**
+         * 等待播放的音樂隊列，例如：
+         * this.queue = {
+         *     724145832802385970: [{
+         *         name: 'G.E.M.鄧紫棋【好想好想你 Missing You】Official Music Video',
+         *         url: 'https://www.youtube.com/watch?v=P6QXo88IG2c&ab_channel=GEM%E9%84%A7%E7%B4%AB%E6%A3%8B'
+         *     }]
+         * }
+         */
         this.queue = {};
+
+        // https://discord.js.org/#/docs/main/stable/class/VoiceConnection
         this.connection = {};
+
+        // https://discord.js.org/#/docs/main/stable/class/StreamDispatcher
         this.dispatcher = {};
     }
 
@@ -159,14 +186,13 @@ class Music {
         this.queue[guildID].shift();
 
         // 歌曲播放結束時的事件
-        const self = this;
         this.dispatcher[guildID].on('finish', () => {
 
             // 如果隊列中有歌曲
-            if (self.queue[guildID].length > 0) {
-                self.playMusic(msg, guildID, self.queue[guildID].shift());
+            if (this.queue[guildID].length > 0) {
+                this.playMusic(msg, guildID, this.queue[guildID][0]);
             } else {
-                self.isPlaying[guildID] = false;
+                this.isPlaying[guildID] = false;
                 msg.channel.send('目前沒有音樂了，請加入音樂 :D');
             }
 
@@ -342,6 +368,29 @@ $ node discord.js
 本來想把程式碼切開在文中講解，但是發現這樣寫起來會篇幅太長而且雜亂，所以就乾脆把註解寫在 code 裡面。
 
 本次音樂機器人的 [Github Repository](https://github.com/B-l-u-e-b-e-r-r-y/Discord-Bot-02)，可以自行 clone 下來研究或修改。
+
+# FAQ
+
+這邊蒐集了可能會遇到的問題。
+
+* Q：執行程式後出現 `Error: Cannot find module 'xxx'` 怎麼辦？
+* A：通常那個 `xxx` 是缺少安裝的套件。跑一下安裝套件的指令 `npm i 套件名稱` 應該就正常了。
+------
+* Q：下 play 指令後機器人跳出 `MinigetError: Status code: 404` 的錯誤訊息怎麼辦？
+* A：請更新 [node-ytdl-core](https://github.com/fent/node-ytdl-core) 至最新版本。`npm i node-ytdl-core@latest`
+------
+* Q：播放音樂時，先 `!!pause` 後再 `!!resume`，機器人沒有恢復播放怎麼辦？
+* A：與 discord.js 和 node.js 版本有關。目前只能等 discord.js 修復或自降 node.js 版本。
+詳細請參考這個 issue：[The function dispatcher.pause() and dispatcher.resume() only works on a second switch #5300](https://github.com/discordjs/discord.js/issues/5300)
+
+## 目前可正常運行的版本（參考用）
+
+* node.js: v14.16
+* @discordjs/opus: "0.5.0"
+* discord.js: "12.5.3"
+* ffmpeg-static: "4.2.8"
+* ytdl-core: "4.8.3"
+
 
 # 更新
 
