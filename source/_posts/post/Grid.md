@@ -154,7 +154,7 @@ categories:
 }
 ```
 
-以上面的例子來看，一般 PC 的情況下 columns 會呈現 100px，隨著頁面寬度變化慢慢縮小，如果擠到不能再擠了，就會維持最小高度 50px。rows 也是一樣的原理。
+以上面的例子來看，一般 PC 的情況下 columns 會呈現 100px，隨著頁面寬度變化慢慢縮小，如果擠到不能再擠了，就會維持最小寬度 50px。rows 也是一樣的原理。
 
 <p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="zYwOjeL" data-user="Priscilla_Lin" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
   <span>See the Pen <a href="https://codepen.io/Priscilla_Lin/pen/zYwOjeL">
