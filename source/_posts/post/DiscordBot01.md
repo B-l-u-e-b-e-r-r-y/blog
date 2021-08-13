@@ -86,7 +86,7 @@ Bot 新增後可以更改它的 USERNAME、ICON（頭貼），修改完畢後記
 
 ## 建立基礎環境
 
-必備：Node.js、編譯器
+必備：Node.js 版本 v14.0.0 以上、編輯器 (推薦 Visual Studio Code)
 
 ### 1. 安裝 [Discord.js](https://github.com/discordjs/discord.js/)
 
@@ -147,6 +147,15 @@ $ node discord.js
 測試一下效果：
 
 ![](/images/dc-bot/01/10.jpg)
+
+-------
+
+這是本次實作的[範例程式碼](https://github.com/B-l-u-e-b-e-r-r-y/Discord-Bot-01)，可以參考檔案的配置，或是直接 Clone 到自己的電腦裡運行。
+
+> **啟用步驟**
+> 1. 安裝：`npm install`
+> 2. 到 token.json，將 Your token 更換自己機器人的 Token
+> 3. 執行：`node discord.js`
 
 ------------------------------------------
 
