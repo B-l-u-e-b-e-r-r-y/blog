@@ -4,10 +4,6 @@
  * Licensed under MIT (https://github.com/primer/github-syntax-theme-generator/blob/master/LICENSE)
  */
 
-main {
-    --color-border-primary: #d0d7de;
-}
-
 .pl-c /* comment, punctuation.definition.comment, string.comment */ {
     color: #6a737d;
 }
@@ -137,7 +133,7 @@ main {
  * Copyright (c) 2018 GitHub Inc.
  * https://github.com/primer/primitives/blob/main/LICENSE
  */
-/*
+
 main {
     --color-text-primary: #24292f;
     --color-text-secondary: #57606a;
@@ -201,7 +197,7 @@ main {
     --color-social-reaction-bg: var(--color-scale-gray-0);
     --color-social-reaction-bg-hover: var(--color-scale-gray-1);
     --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
-} */
+}
 
 main .pagination-loader-container {
     background-image: url(https://github.com/images/modules/pulls/progressive-disclosure-line.svg);
