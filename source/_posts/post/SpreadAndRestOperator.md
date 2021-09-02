@@ -1,25 +1,24 @@
 ---
-title: 展開運算子(Spread Operator)與其餘運算子(Rest Operator)
+title: 展開運算子 (Spread Operator) 與其餘運算子 (Rest Operator)
+date: 2020-01-11
 comments: true
-banner_img: /images/js_banner.jpeg
-index_img: /images/js_banner.jpeg
-date: 2020-01-11 18:03:21
 tags: 
 - ES6
-- Javascript
 categories: 
 - Javascript
 ---
+
+# 展開運算子 (Spread Operator) 與其餘運算子 (Rest Operator)
 
 這兩種運算子的寫法都是 `...`，對，你沒看錯，就是三個點！
 
 接下來來實際說明使用情境：
 
-# 1. 展開運算子 (Spread Operator)
+## 展開運算子 (Spread Operator)
 
 用來將舊的陣列或物件複製到新的陣列或物件中，算是淺拷貝 (Shallow Copy) 的一種。
 
-陣列範例：
+### 陣列範例
 
 ```js
 const numbers = [1, 2, 3];
@@ -31,7 +30,8 @@ console.log(newNumbers);
    [1, 2, 3, 4] */
 ```
 
-物件範例：
+### 物件範例
+
 ```js
 const person = {
     name: 'Blueberry'
@@ -51,7 +51,7 @@ console.log(newPerson);
    } */
 ```
 
-# 2. 其餘運算子 (Rest Operator)
+## 其餘運算子 (Rest Operator)
 
 將不確定數量的參數視為一個陣列。
 

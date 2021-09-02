@@ -1,18 +1,14 @@
 ---
 title: 使用 Node.js + Puppeteer 來爬蟲吧！[通過 PTT 八卦板年齡限制]
+date: 2020-05-30
 comments: true
-banner_img: /images/node_banner.png
-index_img: /images/node_banner.png
-date: 2020-05-30 15:00:00
 tags: 
-- node.js
-- Javascript
-- w3HexSchool
+- 爬蟲
 categories: 
 - node.js
 ---
 
-# 前言
+# 使用 Node.js + Puppeteer 來爬蟲吧！[通過 PTT 八卦板年齡限制]
 
 如果使用前一篇[使用 Node.js 來爬蟲吧！[PTT 股票板]](https://b-l-u-e-b-e-r-r-y.github.io/post/PTTCrawler/)程式碼，試著將網址改成八卦板運行，會發現爬蟲抓不到資料的問題。
 
@@ -22,21 +18,21 @@ categories:
 
 當然也可以在 requset 時帶 cookie，不過本篇文章會講解使用自動化測試工具 [Puppeteer](https://github.com/puppeteer/puppeteer) 來實作這個功能。
 
-# 實作
+## 實作
 
-## 安裝 Puppeteer
+### 安裝 Puppeteer
 
 ```
 npm i puppeteer
 ```
 
-## 引入 Puppeteer
+### 引入 Puppeteer
 
 ```js
 const puppeteer = require('puppeteer');
 ```
 
-## 程式碼
+### 程式碼
 
 下面程式碼主要功能是先 request 八卦板，待跳出年齡驗證的頁面後，使用 Puppeteer 去模擬使用者點擊已滿18歲按鈕，並取得跳轉後的新頁面 content。
 

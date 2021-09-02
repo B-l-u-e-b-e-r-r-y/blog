@@ -1,19 +1,14 @@
 ---
 title: 【用 JS 寫一個 Discord Bot！】01 建立機器人
+date: 2020-04-04
 comments: true
-banner_img: /images/dc_banner.jpg
-index_img: /images/dc_banner.jpg
-date: 2020-04-04 18:00:00
 tags: 
-- node.js
-- Discord.js
-- DC機器人
-- Javascript
-- w3HexSchool
+- Discord Bot
 categories: 
 - node.js
-- Discord Bot
 ---
+
+# 【用 JS 寫一個 Discord Bot！】01 建立機器人
 
 ## 創建機器人
 
@@ -51,7 +46,7 @@ Bot 新增後可以更改它的 USERNAME、ICON（頭貼），修改完畢後記
 
 **切忌不要將 token 洩漏出去**，因為擁有 token 的人可以操控這隻 bot。
 
-題外話：我曾經不小心把 token 上傳到 Github 上面過（當時還沒有開放私有庫），結果不到短短的一小時就被盜用，那時候整個 DC 群組的人都收到了廣告訊息...XD
+> 題外話：我曾經不小心把 token 上傳到 Github 上面過（當時還沒有開放私有庫），結果不到短短的一小時就被盜用，那時候整個 DC 群組的人都收到了廣告訊息...XD
 
 **※ 2021/06/27 補充：現在如果不小心把 token 上傳到 Github，Discord 官方會用 Discord 通知 token 擁有人並強制重新產生 token。**
 
@@ -86,7 +81,10 @@ Bot 新增後可以更改它的 USERNAME、ICON（頭貼），修改完畢後記
 
 ## 建立基礎環境
 
-必備：Node.js 版本 v14.0.0 以上、編輯器 (推薦 Visual Studio Code)
+必備：
+
+* Node.js 版本 v14.0.0 以上
+* 編輯器 (推薦 Visual Studio Code)
 
 ### 1. 安裝 [Discord.js](https://github.com/discordjs/discord.js/)
 
@@ -106,7 +104,7 @@ Token 在 Bot 頁面複製：
 
 ![](/images/dc-bot/01/06.jpg)
 
-`※ 如果專案要上傳至 Github，切記將 token.json 加入 .gitignore。`
+`※ 如果專案要上傳至 Github，切記要將 token.json 加入 .gitignore。`
 
 ### 3. 新增 discord.js
 
@@ -161,5 +159,5 @@ $ node discord.js
 
 **【用 JS 寫一個 Discord Bot！】系列文章**
 
-[【用 JS 寫一個 Discord Bot！】01 建立機器人](https://b-l-u-e-b-e-r-r-y.github.io/post/DiscordBot01/)
-[【用 JS 寫一個 Discord Bot！】02 音樂機器人](https://b-l-u-e-b-e-r-r-y.github.io/post/DiscordBot02/)
+* [【用 JS 寫一個 Discord Bot！】01 建立機器人](https://b-l-u-e-b-e-r-r-y.github.io/post/DiscordBot01/)
+* [【用 JS 寫一個 Discord Bot！】02 音樂機器人](https://b-l-u-e-b-e-r-r-y.github.io/post/DiscordBot02/)

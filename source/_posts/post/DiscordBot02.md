@@ -1,21 +1,13 @@
 ---
 title: 【用 JS 寫一個 Discord Bot！】02 音樂機器人
-comments: true
-banner_img: /images/dc_banner.jpg
-index_img: /images/dc_banner.jpg
-date: 2020-05-17 23:00:00
+date: 2020-05-17
 tags: 
-- node.js
-- Discord.js
-- DC機器人
-- Javascript
-- w3HexSchool
+- Discord Bot
 categories: 
 - node.js
-- Discord Bot
 ---
 
-# 前言
+# 【用 JS 寫一個 Discord Bot！】02 音樂機器人
 
 今天我們來寫一個具有以下功能的音樂機器人：
 * 播放 YouTube 歌曲
@@ -25,33 +17,33 @@ categories:
 
 如果還不知道怎麼建立機器人，可以參考我之前寫的這篇文章：[【用 JS 寫一個 Discord Bot！】01 建立機器人](https://b-l-u-e-b-e-r-r-y.github.io/post/DiscordBot01/)。
 
-# 實作
+## 實作
 
-## 安裝套件
+### 安裝套件
 
 要完成這些功能，除了需要 [Discord.js](https://github.com/discordjs/discord.js/) 套件以外，還必須安裝下面這三個套件。
 
-* ### [ffmpeg-static](https://github.com/eugeneware/ffmpeg-static)
+* #### [ffmpeg-static](https://github.com/eugeneware/ffmpeg-static)
 執行音樂的轉檔、串流功能
 ```
 $ npm install ffmpeg-static
 ```
 
-* ### [discordjs/opus](https://github.com/discordjs/opus)
+* #### [discordjs/opus](https://github.com/discordjs/opus)
 Opus 編碼器
 ```
 $ npm install @discordjs/opus
 ```
 
-* ### [node-ytdl-core](https://github.com/fent/node-ytdl-core)
+* #### [node-ytdl-core](https://github.com/fent/node-ytdl-core)
 執行下載 YouTube 影片的功能
 ```
 $ npm install ytdl-core
 ```
 
-## 開始編寫
+### 開始編寫
 
-### 建立 config.json
+#### 建立 config.json
 
 在開始之前，我們先在專案中建立 config.json，放一些常用配置。
 
@@ -63,7 +55,7 @@ $ npm install ytdl-core
 }
 ```
 
-### 編寫 discord.js
+#### 編寫 discord.js
 
 ```js
 const { Client } = require('discord.js');
@@ -369,7 +361,7 @@ $ node discord.js
 
 本次音樂機器人的 [Github Repository](https://github.com/B-l-u-e-b-e-r-r-y/Discord-Bot-02)，可以自行 clone 下來研究或修改。
 
-# FAQ
+## FAQ
 
 這邊蒐集了可能會遇到的問題。
 
@@ -383,7 +375,7 @@ $ node discord.js
 * A：與 discord.js 和 node.js 版本有關。目前只能等 discord.js 修復或自降 node.js 版本。
 詳細請參考這個 issue：[The function dispatcher.pause() and dispatcher.resume() only works on a second switch #5300](https://github.com/discordjs/discord.js/issues/5300)
 
-## 目前可正常運行的版本（參考用）
+### 目前可正常運行的版本（參考用）
 
 * node.js: v14.16
 * @discordjs/opus: "0.5.0"
@@ -392,13 +384,13 @@ $ node discord.js
 * ytdl-core: "4.8.3"
 
 
-# 更新
+## 更新
 
-## 2021/01/13 更新
+### 2021/01/13 更新
 
 發現之前會有無法播放的問題，已更新 ytdl 套件解決問題。
 
-## 2021/02/03 更新
+### 2021/02/03 更新
 
 發現更新 ytdl 套件後會無法播放音樂的問題，因為 `musicURL` 字串的空格沒處理乾淨：
 ```js
@@ -409,7 +401,7 @@ const musicURL = msg.content.replace(`${prefix}play`, '');
 const musicURL = msg.content.replace(`${prefix}play`, '').trim();
 ```
 
-## 2021/05/30 更新
+### 2021/05/30 更新
 
 發現機器人無法於不同伺服器播放歌曲的問題，是因為原本的 `isPlaying` 變數忘了寫成物件，變成多個伺服器共用一個變數。
 ```js
@@ -420,7 +412,7 @@ this.isPlaying = false;
 this.isPlaying = {};  // { guild1ID: false, guild2ID: true, ... }
 ```
 
-## 2021/06/27 更新
+### 2021/06/27 更新
 
 加入一些防呆機制以及更新套件版本。
 
@@ -434,5 +426,5 @@ npm install ytdl-core@latest
 
 **【用 JS 寫一個 Discord Bot！】系列文章**
 
-[【用 JS 寫一個 Discord Bot！】01 建立機器人](https://b-l-u-e-b-e-r-r-y.github.io/post/DiscordBot01/)
-[【用 JS 寫一個 Discord Bot！】02 音樂機器人](https://b-l-u-e-b-e-r-r-y.github.io/post/DiscordBot02/)
+* [【用 JS 寫一個 Discord Bot！】01 建立機器人](https://b-l-u-e-b-e-r-r-y.github.io/post/DiscordBot01/)
+* [【用 JS 寫一個 Discord Bot！】02 音樂機器人](https://b-l-u-e-b-e-r-r-y.github.io/post/DiscordBot02/)

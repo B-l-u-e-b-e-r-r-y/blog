@@ -1,40 +1,33 @@
 ---
 title: 使用 Node.js 來爬蟲吧！[PTT 股票板]
+date: 2020-03-28
 comments: true
-banner_img: /images/node_banner.png
-index_img: /images/node_banner.png
-date: 2020-03-28 18:00:00
 tags: 
-- node.js
-- Javascript
-- w3HexSchool
+- 爬蟲
 categories: 
 - node.js
 ---
-# 前言
+# 使用 Node.js 來爬蟲吧！[PTT 股票板]
 
 一般大家爬蟲都是使用 python，其實 node.js 也是可以爬蟲的，作為前端，能用自己習慣的語言來寫當然很方便。
 
 但是 python 和 node.js 除了寫法不同，兩者特性也是不同的，例如 node.js 是異步的、單執行緒，python 則是多執行緒等等，關於這些差異本文就不多加討論。
 
-# 模組
+## 模組
 
 node.js 爬蟲需要用到兩個模組：[request](https://github.com/request/request) 和 [cheerio](https://github.com/cheeriojs/cheerio)。
 
-## 介紹
+* **request** 是用來訪問網站用的，它能模擬 Client 訪問網站，設定訪問時帶的 Header
+* **cheerio** 算是 node.js 界的 jQuery，它是以 jQuery 為核心去設計的，好比要抓取一個 html，class 名稱為 title 的文字 `<div class='title'>標題</div>`，cheerio 的寫法是這樣：`$('.title').text()`
 
-**request** 是用來訪問網站用的，它能模擬 Client 訪問網站，設定訪問時帶的 Header。
-
-**cheerio** 算是 node.js 界的 jQuery，它是以 jQuery 為核心去設計的，好比要抓取一個 html，class 名稱為 title 的文字 `<div class='title'>標題</div>`，cheerio 的寫法是這樣：`$('.title').text()`。
-
-## 安裝
+### 安裝
 
 ```
 $ npm i --save request
 $ npm i --save cheerio
 ```
 
-## 載入
+### 載入
 
 安裝好後就可以看到專案的 package.json 已經出現這兩個模組，這時候就可以把模組引入程式中。
 
@@ -43,9 +36,9 @@ const request = require("request");
 const cheerio = require("cheerio");
 ```
 
-# 實作
+## 實作
 
-## request 訪問
+### request 訪問
 
 本文以 [PTT 股票板](https://www.ptt.cc/bbs/Stock/index.html) 為範例。
 
@@ -67,7 +60,7 @@ const pttCrawler = () => {
 pttCrawler();
 ```
 
-## cheerio 抓取 Element
+### cheerio 抓取 Element
 
 request 之後就可以取得內容(body)，接著使用 cheerio 抓取 Element。
 

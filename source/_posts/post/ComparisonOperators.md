@@ -1,17 +1,16 @@
 ---
 title: 比較運算子
+date: 2020-02-29
 comments: true
-banner_img: /images/js_banner.jpeg
-index_img: /images/js_banner.jpeg
-date: 2020-02-29 23:01:00
-tags: 
-- Javascript
-- w3HexSchool
 categories: 
 - Javascript
 ---
 
-## 請先參閱：[運算子優先序](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
+# 比較運算子
+
+:::note
+請先參閱：[運算子優先序](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Operator_Precedence) 
+:::
 
 先來看一段程式碼：
 
@@ -27,7 +26,7 @@ console.log(3 < 2 < 1);   // 結果是 true
 console.log(false < 1);
 ```
 
-但是 false 和 1 並不是同一個型別，所以 JavaScript 會進行**強制型轉**。
+但是 `false` 和 `1` 並不是同一個型別，所以 JavaScript 會進行**強制型轉**。
 
 如果你輸入下面這行程式碼，可以知道 false 轉成數字後的值：
 
@@ -53,7 +52,9 @@ Number(!null);      // 結果是 1
 
 ---------------------------------------
 
-## 請先參閱：[等號的比較](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+:::note
+請先參閱：[等號的比較](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+:::
 
 再來是 `==` 和 `===` 的區別。
 

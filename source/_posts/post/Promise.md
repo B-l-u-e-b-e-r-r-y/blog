@@ -1,9 +1,7 @@
 ---
 title: Javascript ES6 Promise
+date: 2020-03-13
 comments: true
-banner_img: /images/promise/banner.jpeg
-index_img: /images/promise/banner.jpeg
-date: 2020-03-14 00:00:00
 tags: 
 - ES6
 - Javascript
@@ -12,9 +10,11 @@ categories:
 - Javascript
 ---
 
+# Javascript ES6 Promise
+
 Promise 是很適合用來處理非同步的方法，大多數情況是用來處理非同步事件或 Callback hell (回調地獄)。
 
-## 非同步調用
+## 情境一：非同步調用
 
 例如 `getData()` 在 `api()` 還沒回傳值就想取得結果，就會出現 `undefined`。可以看看下面的例子：
 
@@ -34,13 +34,13 @@ const getData = () => {
 getData();
 ```
 
-`setTimeout` 是 Javascript 中一種非同步的方法，它會等到指定時間過後才會執行裡面的程式碼，但與此同時，其他的程式碼一樣會繼續進行，**不會等到 `setTimeout` 執行結束才繼續往下**。
+`setTimeout` 是 Javascript 中一種非同步的方法，它會等到指定時間過後才會執行裡面的程式碼，但與此同時，其他的程式碼一樣會繼續進行，**不會等到 setTimeout 執行結束才繼續往下**。
 
-## 使用 Promise 解決非同步調用
+### 使用 Promise 解決非同步調用
 
 那麼該如何解決呢？這時候就可以使用 Promise。
 
-建立 Promise 必須回傳 resolve(解決) 及 reject(拒絕)，當然只回傳 resolve 或 reject 也是可以的。
+建立 Promise 必須回傳 resolve(解決) 及 reject(拒絕)，當然只回傳其中一個也是可以的。
 
 ```js
 const promise = new Promise((resolve, reject) => {
@@ -51,12 +51,14 @@ const promise = new Promise((resolve, reject) => {
     }
 });
 ```
-定義 Promise 之後就可以呼叫它：
-`promise.then(fulfilledCallback, rejectedCallback)`
+定義 Promise 之後就可以呼叫它，這時候有兩種寫法：
+
+* `promise.then(fulfilledCallback, rejectedCallback)`
+* `promise.then(fulfilledCallback).catch(rejectedCallback)`
 
 如果剛剛回傳的結果是 resolve(解決)，則執行 `fulfilledCallback`，反之如果是回傳 reject(拒絕)，則執行 `rejectedCallback`。
 
-**※ 這邊特別提一下，`rejectedCallback` 是可選的，不一定要使用它來處理錯誤，使用 `catch(rejectedCallback)` 也有一樣的效果，但這兩種寫法在其他情境下會產生差異，後面錯誤處理的部分會提到。**
+**※ 這邊特別提一下：上述提到的兩種寫法在其他情境下會產生差異，後面錯誤處理的部分會提到。**
 
 下面這段程式碼會在 Promise 回傳 resolve 或 reject 之後才被執行，因此可以達到同步延遲的效果：
 
@@ -81,8 +83,8 @@ promise.then((res) => {
 
 ```js
 const api = () => {
-    // 模擬等待 api 回傳的時間
     return new Promise((resolve, reject) => {
+        // 模擬等待 api 回傳的時間
         setTimeout(() => {
             resolve({ value: 1 });
         }, 2000);
@@ -102,7 +104,7 @@ getData();
 
 這樣就可以解決非同步調用的問題了。
 
-## Callback hell
+## 情境二：Callback hell
 
 接下來看看 Callback hell 的問題，下面的例子是模擬取用 user、country、item 這三個不同的 api，而且必須取完 userApi 再取 countryApi，然後再取 itemApi：
 
@@ -142,7 +144,7 @@ getData();
 
 這樣的寫法非常難讀和維護，如果再加入其他動作或錯誤處理，那真的是一坨超級難讀的程式碼了。
 
-## 使用 Promise 解決 Callback hell
+### 使用 Promise 解決 Callback hell
 
 將程式碼改寫如下：
 

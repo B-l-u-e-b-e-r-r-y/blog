@@ -1,25 +1,24 @@
 ---
 title: CSS Grid 格線佈局
-comments: true
-banner_img: /images/grid_banner.png
-index_img: /images/grid_banner.png
-date: 2021-07-04 18:01:00
+date: 2021-07-04
 tags: 
 - Grid
-- CSS
+- RWD
 categories: 
 - CSS
 ---
-# 前言
+
+# CSS Grid 格線佈局
 
 [Flexbox](https://b-l-u-e-b-e-r-r-y.github.io/post/Flexbox/) 的出現讓很多人捨棄了舊有的排版方式，大多數的時候我也還是使用 Flexbox，但最近遇到的需求版型比較複雜，於是開始學習 Grid。
 
 我認為 Grid 很適合用在 Dashboard 的排版，比如：
+
 ![](/images/grid/grid-dashboard.png)
 
 不是說 Flexbox 無法做到這個版型，而是用 Grid 來排真的比較快又簡單很多。
 
-## Google Chrome 的格線預覽
+## 實用輔助工具 - Google Chrome 的格線預覽
 
 開始前先來介紹實用的 Google Chrome 小工具。有一個版型長這樣：
 
@@ -29,37 +28,39 @@ categories:
 
 ![](/images/grid/grid-brower.png)
 
-# 開始使用
+## 開始使用
 
 先讓包在最外層的父元素變成 Grid Container：
 
-```css
+``` css
 .wrapper {
     display: grid;
 }
 ```
 
-## 設定 Grid Container
+### 設定 Grid Container
 
 要設定 Grid Container，最基本會用到 `grid-template-rows` / `grid-template-columns` 這兩個屬性。
 
 ![grid-template-rows 是縱軸，grid-template-columns 則是橫軸](/images/grid/grid-01.png)
 
-### 明確定義寬高
+#### 明確定義寬高
 
 簡單來說就是使用 px、%、vw 或 vh 去設定寬高：
 
-```css
+``` css
 .wrapper {
     display: grid;
     grid-template-columns: 200px 200px 200px;
 }
 ```
 
-來切個常見的 layout。
+**簡易示範**
+
+一起來切個常見的 layout～
 
 **HTML**
-```html
+``` html
 <div class="wrapper">
     <div>menu</div>
     <div>nav</div>
@@ -88,7 +89,9 @@ categories:
 </p>
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
-### 用等分決定寬高
+---------------
+
+#### 用等分決定寬高
 
 這時候就是使用只有在 Grid 出現的格線單位：`fr`。1fr 是一等分的意思，2fr 就是兩等分，以此類推。
 
@@ -120,17 +123,19 @@ categories:
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 
-### Repeat
+---------------
 
-`Repeat(格數, 格寬/高)`
+#### repeat
 
-如果 Row 或 Column 的寬度是相同的，而且需要好幾格，這時候就可以用 `Repeat`：
+`repeat(格數, 格寬/高)`
+
+如果 Row 或 Column 的寬度是相同的，而且需要好幾格，這時候就可以用 `repeat`：
 
 ```css
 .wrapper {
     display: grid;
-    grid-template-rows: Repeat(10, 50px);
-    grid-template-columns: Repeat(10, 1fr);
+    grid-template-rows: repeat(10, 50px);
+    grid-template-columns: repeat(10, 1fr);
 }
 ```
 
@@ -140,7 +145,9 @@ categories:
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 
-### minmax
+---------------
+
+#### minmax
 
 `minmax(最小值, 最大值)`
 
@@ -162,11 +169,13 @@ categories:
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 
-## 客製化區塊
+---------------
+
+### 客製化區塊
 
 要做到客製化區塊，可以靠這兩種設定方式做到：
 
-### grid-template-areas
+#### grid-template-areas
 
 `grid-template-areas` 可以單獨定義每一格，但有幾點必須注意：
 
@@ -237,7 +246,9 @@ categories:
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 
-### 各個 Class 分別指定
+---------------
+
+#### 各個 Class 分別指定
 
 這邊也分成兩種方式：
 
@@ -273,8 +284,7 @@ grid-row: 1 / span 3;
 grid-row: 1 / auto;
 ```
 
-**CSS**
-註解和未註解的部分是同樣效果不同寫法（HTML 沿用上個範例）
+**CSS** *(註解和未註解的部分是同樣效果不同寫法。HTML 沿用上個範例)*
 
 ```css
 .wrapper {
@@ -364,11 +374,13 @@ grid-row: 1 / auto;
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 
-## grid-auto-rows / grid-auto-columns
+---------------
+
+### grid-auto-rows / grid-auto-columns
 
 如果只是想要簡單設定 rows 或 columns，可以用 `grid-auto-rows` 或 `grid-auto-columns`。
 
-### grid-auto-rows
+#### grid-auto-rows
 
 ```css
 .wrapper {
@@ -385,7 +397,7 @@ grid-row: 1 / auto;
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 
-### grid-auto-columns
+#### grid-auto-columns
 
 ```css
 .wrapper {
@@ -401,11 +413,13 @@ grid-row: 1 / auto;
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 
-## gap
+---------------
+
+### gap
 
 gap 各區塊之間的間距，可以一起設定，也可以 rows 和 columns 分開設定。
 
-### 一起設定 gap
+#### 一起設定 gap
 
 ```css
 .wrapper {
@@ -416,7 +430,7 @@ gap 各區塊之間的間距，可以一起設定，也可以 rows 和 columns �
 }
 ```
 
-### 分開設定 gap
+#### 分開設定 gap
 
 ```css
 .wrapper {
@@ -435,7 +449,9 @@ gap 各區塊之間的間距，可以一起設定，也可以 rows 和 columns �
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 
-# Grid 對不同瀏覽器的支援
+---------------
+
+## Grid 對不同瀏覽器的支援
 
 Grid 目前的支援不像 Flexbox 那麼好，不過主流瀏覽器幾乎都有支援。
 

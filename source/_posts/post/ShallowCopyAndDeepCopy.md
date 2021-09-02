@@ -1,16 +1,12 @@
 ---
 title: Javascript 的淺拷貝與深拷貝
+date: 2020-03-21
 comments: true
-banner_img: /images/js_banner.jpeg
-index_img: /images/js_banner.jpeg
-date: 2020-03-21 18:00:00
-tags: 
-- Javascript
-- w3HexSchool
 categories: 
 - Javascript
 ---
-# 前言
+
+# Javascript 的淺拷貝與深拷貝
 
 在寫 JS 的過程中，常常會遇到需要拷貝物件或陣列的情況。
 
@@ -50,13 +46,13 @@ console.log('person: ', person);
 
 這就跟 __by value__ 與 __by reference__ 有關了。
 
-# by value VS by reference
+## by value VS by reference
 
 兩者的不同在於**記憶體的位置**，如果是 by value，複製時記憶體位置會是**不同**的，
 
 但如果是 by reference，複製時記憶體位置會是**相同**的，下面就來詳細介紹與舉例。
 
-## by value
+### by value
 ```js
 const a = 1;
 const b = a;
@@ -71,7 +67,7 @@ console.log(a, b);  // 1, 2
 
 只要是**純值（數字、布林或字串）**，就是 by value。
 
-## by reference
+### by reference
 
 ```js
 const a = { name: 'Blueberry' };
@@ -101,7 +97,7 @@ console.log('b: ', b);
 
 如果不希望修改時會影響到對方，就必須得使用**淺拷貝**或**深拷貝**去複製。
 
-# 淺拷貝 VS 深拷貝
+## 淺拷貝 VS 深拷貝
 
 兩者的差異在於，**淺拷貝**只能複製第一層，無法深層複製第二層、第三層...等等，如果更改了第二層以後的內容，一樣會影響到原本的物件，因為第二層以後的記憶體位置與原本物件的記憶體位置還是相同的。**但如果需要拷貝的物件只有一層，用淺拷貝還是可以的。**
 
@@ -109,9 +105,9 @@ console.log('b: ', b);
 
 下面就來介紹淺拷貝與深拷貝的用法。
 
-## 淺拷貝
+### 淺拷貝
 
-### Object.assign()
+#### Object.assign()
 ```js
 const person = {
     name: 'Blueberry',
@@ -143,7 +139,7 @@ console.log('person: ', person);
 
 但是 `name` 這個值就不同了，`copy` 的第一層是有被淺層拷貝成功的。
 
-### for 迴圈
+#### for 迴圈
 
 for 迴圈是最土法煉鋼的方法，它也能達到淺拷貝的效果。
 
@@ -165,7 +161,7 @@ console.log(b);
  */
 ```
 
-### 展開運算子
+#### 展開運算子
 
 [展開運算子](https://b-l-u-e-b-e-r-r-y.github.io/post/SpreadAndRestOperator/)是 ES6 新出的方法，應該是最方便的寫法了。
 
@@ -184,11 +180,11 @@ console.log(b);
  */
 ```
 
-## 深拷貝
+### 深拷貝
 
 在不使用其他套件的情況下，目前 Javascript 的深拷貝只有 `JSON.parse()` + `JSON.stringify()` 的寫法。
 
-### JSON.parse(JSON.stringify())
+#### JSON.parse(JSON.stringify())
 ```js
 const person = {
     name: 'Blueberry',

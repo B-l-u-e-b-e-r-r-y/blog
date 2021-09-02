@@ -1,19 +1,18 @@
 ---
 title: Destructuring 解構賦值
+date: 2020-02-22
 comments: true
-banner_img: /images/js_banner.jpeg
-index_img: /images/js_banner.jpeg
-date: 2020-02-22 19:43:00
 tags: 
-- Javascript
 - ES6
-- w3HexSchool
 categories: 
 - Javascript
 ---
+
+# Destructuring 解構賦值
+
 解構賦值可以用在陣列或物件，可以提取特定的值成獨立變數。
 
-# 1. Array Destructuring
+## Array Destructuring
 ```js
 const numbers = [1, 2, 3];
 [num1, num2] = numbers;
@@ -55,7 +54,7 @@ console.log(num, nums);
 */ 
 ```
 
-# 2. Object Destructuring
+## Object Destructuring
 ```js
 let { name: n, age: a } = {
     name: 'Blueberry',

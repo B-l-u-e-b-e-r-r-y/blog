@@ -1,17 +1,11 @@
 ---
 title: React Children 屬性
+date: 2020-02-05
 comments: true
-banner_img: /images/react_banner.png
-index_img: /images/react_banner.png
-date: 2020-02-05 20:24:00
-tags: 
-- w3HexSchool
-- React
-- Javascript
 categories: 
 - React
 ---
-# 介紹
+# React Children 屬性
 
 使用組件時，大多數都是這樣寫：
 
@@ -29,7 +23,8 @@ categories:
 
 除了在組件中寫入內容以外，組件本身也要加入 `props.children` 的屬性才會出現內容，如果沒有寫入任何內容，則 `props.children` 返回 null。
 
-App.js
+> App.js
+
 ```js
 import React, { Component } from 'react';
 import Card from './Card';
@@ -47,7 +42,8 @@ class App extends Component {
 export default App;
 ```
 
-Card.js
+> Card.js
+
 ```js
 const Card = (props) => {
     return (
@@ -65,13 +61,14 @@ export default Card;
 
 ---------------------------------------
 
-# 陣列處理
+## 陣列處理
 
-## React.Children.map
+### React.Children.map
 
 除了文字以外，children 也可以傳遞陣列，這邊我們使用 React 提供的方法 `React.Children.map` 來處理資料。
 
-App.js
+> App.js
+
 ```js
 class App extends Component {
     render() {
@@ -88,7 +85,8 @@ class App extends Component {
 }
 ```
 
-Card.js
+> Card.js
+
 ```js
 const Card = (props) => {
     return (
@@ -109,15 +107,15 @@ const Card = (props) => {
 
 ![](/images/react-children/2.png)
 
-## React.Children.forEach
+### React.Children.forEach
 
 與 `React.Children.map` 的使用方式相同，但是不會回傳陣列。
 
 ---------------------------------------
 
-# Child 數量計算
+## Child 數量計算
 
-## React.Children.count
+### React.Children.count
 
 這個方法用來計算 child 的數量，舉例來說：
 
@@ -131,7 +129,8 @@ const Card = (props) => {
 
 裡面包含了三個 `<p>Hello World!</p>`，所以數量 = 3。
 
-App.js
+> App.js
+
 ```js
 class App extends Component {
     render() {
@@ -146,7 +145,8 @@ class App extends Component {
 }
 ```
 
-Card.js
+> Card.js
+
 ```js
 const Card = (props) => {
     return (
@@ -162,15 +162,16 @@ const Card = (props) => {
 
 ---------------------------------------
 
-# 只呈現一個 Child
+## 只呈現一個 Child
 
-## React.Children.only
+### React.Children.only
 
 這個方法是讓組件只呈現一個 child，如果 children 不只一個 child 將會報錯：
 
 ![](/images/react-children/4.png)
 
-App.js
+> App.js
+
 ```js
 class App extends Component {
     render() {
@@ -183,7 +184,8 @@ class App extends Component {
 }
 ```
 
-Card.js
+> Card.js
+
 ```js
 const Card = (props) => {
     return (
@@ -193,20 +195,22 @@ const Card = (props) => {
     );
 }
 ```
+
 網頁呈現：
 ![](/images/react-children/5.png)
 
 ---------------------------------------
 
-# 將 Child 轉成陣列
+## 將 Child 轉成陣列
 
-## React.Children.toArray
+### React.Children.toArray
 
 `React.Children.toArray` 方法會將 child 轉成一個扁平的陣列，並對每個 child 指定一個 key。
 
 下面示範用這個方法將每個 child 數字以小到大排序：
 
-App.js
+> App.js
+
 ```js
 class App extends Component {
     render() {
@@ -221,7 +225,8 @@ class App extends Component {
 }
 ```
 
-Card.js
+> Card.js
+
 ```js
 const Card = (props) => {
     let child = React.Children.toArray(props.children);

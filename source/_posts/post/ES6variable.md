@@ -1,15 +1,15 @@
 ---
 title: var、let、const 的區別
+date: 2019-11-27
 comments: true
-banner_img: /images/js_banner.jpeg
-index_img: /images/js_banner.jpeg
-date: 2019-11-27 16:03:21
 tags: 
 - ES6
-- Javascript
 categories: 
 - Javascript
 ---
+
+# var、let、const 的區別
+
 ## var 變數
 宣告時可以不給資料，資料可更動，範圍是函式作用域 (function scope)
 

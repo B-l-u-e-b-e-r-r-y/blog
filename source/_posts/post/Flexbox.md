@@ -1,28 +1,25 @@
 ---
 title: CSS 排版神器 Flexbox
-comments: true
-banner_img: /images/code_banner.jpg
-index_img: /images/code_banner.jpg
-date: 2020-02-15 23:10:00
+date: 2020-02-15
 tags: 
-- w3HexSchool
-- CSS
 - Flexbox
 - RWD
 categories: 
 - CSS
 ---
 
+# CSS 排版神器 Flexbox
+
 在 Flexbox 中，部分屬性只能用於父元素，部分只能用於子元素。
 ![](/images/flexbox/fathernchildren.jpg)
-* #### 父元素屬性
+* **父元素屬性**
     * display
     * flex-direction
     * flex-wrap
     * justify-content
     * align-items
     * align-content
-* #### 子元素屬性
+* **子元素屬性**
     * align-self
     * order
     * flex
@@ -31,9 +28,9 @@ categories:
         * flex-basis
     
 
-# 父元素屬性
+## 父元素屬性
 
-## display
+### display
 
 ```css
 display: flex | inline-flex;
@@ -53,7 +50,7 @@ display: flex | inline-flex;
 
 ---------------------------------------
 
-## flex-direction
+### flex-direction
 ```css
 flex-direction: row<default> | row-reverse | column | column-reverese;
 ```
@@ -73,7 +70,7 @@ flex-direction: row<default> | row-reverse | column | column-reverese;
 
 ---------------------------------------
 
-## flex-wrap
+### flex-wrap
 ```css
 flex-wrap: nowrap<default> | wrap | wrap-reverse;
 ```
@@ -92,7 +89,7 @@ flex-wrap: nowrap<default> | wrap | wrap-reverse;
 
 ---------------------------------------
 
-## justify-content
+### justify-content
 ```css
 justify-content: flex-start<default> | flex-end | center | space-between | space-around;
 ```
@@ -116,7 +113,7 @@ justify-content: flex-start<default> | flex-end | center | space-between | space
 
 ---------------------------------------
 
-## align-items
+### align-items
 ```css
 align-items: flex-start | flex-end | center | stretch<default> | baseline;
 ```
@@ -138,7 +135,7 @@ align-items: flex-start | flex-end | center | stretch<default> | baseline;
 
 ---------------------------------------
 
-## align-content
+### align-content
 ```css
 align-content: flex-start | flex-end | center | stretch<default> | space-between | space-around;
 ```
@@ -160,9 +157,9 @@ align-content: flex-start | flex-end | center | stretch<default> | space-between
 
 ---------------------------------------
 
-# 子元素屬性
+## 子元素屬性
 
-## align-self
+### align-self
 ```css
 align-self: flex-start | flex-end | center | stretch | baseline;
 ```
@@ -185,7 +182,7 @@ align-self: flex-start | flex-end | center | stretch | baseline;
 
 ---------------------------------------
 
-## order
+### order
 ```css
 order: <number>;
 ```
@@ -201,20 +198,20 @@ order: <number>;
 
 ---------------------------------------
 
-## flex
+### flex
 ```css
 flex: <flex-grow> <flex-shrink> <flex-basis>;
 ```
 
 `flex` 是由三個值組成，如果只給定一個值，則是給定 `flex-grow`。
 
-
-### flex-grow
+#### flex-grow
 ```css
 flex-grow: <number>;
 ```
 
 當子元素的總寬度**不超過**父元素時，`flex-grow` 會分配剩餘的空間給特定子元素。
+
 `flex-grow` 的預設值為 0，設定 1 以上的值會進行彈性變化。
 
 範例程式碼：
@@ -226,12 +223,13 @@ flex-grow: <number>;
 
 ---------------------------------------
 
-### flex-shrink
+#### flex-shrink
 ```css
 flex-shrink: <number>;
 ```
 
 當子元素的總寬度**超過**父元素時，`flex-shrink` 會將特定子元素的寬度依比例縮減。
+
 `flex-shrink` 的預設值為 1，設為 0 的話不會進行彈性變化。
 
 範例程式碼：
@@ -243,7 +241,7 @@ flex-shrink: <number>;
 
 ---------------------------------------
 
-### flex-basis
+#### flex-basis
 ```css
 flex-basis: <number>;
 ```

@@ -1,9 +1,7 @@
 ---
-title: Javascript 原型鍊（Prototype Chain）
+title: 原型鍊 (Prototype Chain)
+date: 2020-04-25
 comments: true
-banner_img: /images/js_banner.jpeg
-index_img: /images/js_banner.jpeg
-date: 2020-04-25 23:08:00
 tags: 
 - Prototype
 - Javascript
@@ -12,7 +10,9 @@ categories:
 - Javascript
 ---
 
-# 原型繼承
+# 原型鍊 (Prototype Chain)
+
+## 原型繼承
 
 不同於 Java 或 C++ 這些基於類別的語言，Javascript 是基於原型（prototype-based）的，ES6 雖然有 `class` 可以使用，但那只是語法糖而已。
 
@@ -23,7 +23,7 @@ categories:
 當我們將物件打印出來並且展開，就可以看到 `__proto__`，它就是原型物件。
 ![](/images/prototype/04.jpg)
 
-# 原型鍊
+## 原型鍊
 
 在原型繼承中有提到**原型鍊**，那它是什麼呢？
 
@@ -48,7 +48,7 @@ categories:
 
 obj 和 obj2 兩個主物件本身並不衝突，但它們繼承的 proto 卻是同一個，在記憶體中的位置也是相同的，因此如果想要取 Prop3 這個屬性，也一樣可以取得到。
 
-# 實作原型鍊（不建議）
+## 實作原型鍊（不建議）
 
 這裡會寫不建議，是因為 `obj.__proto__ = prototype` 這個寫法會造成效能問題，這邊會使用到只是為了 Demo，實際 Coding 的時候千萬不要這樣寫。
 
@@ -76,8 +76,6 @@ console.log(blueberry.firstname);      // Blueberry
 
 但是為什麼 `blueberry.firstname` 的結果會是 'Blueberry' 而不是原型物件的 'Default'？這是因為 Javascript 引擎先在 blueberry 這個主物件中找到了 firstname 屬性，所以就不會繼續往原型鍊尋找。
 
----------------------------------------
+## 參考資料
 
-參考資料：
-
-[《JavaScript 全攻略：克服 JS 的奇怪部分》](https://www.udemy.com/course/javascriptjs/)
+* [《JavaScript 全攻略：克服 JS 的奇怪部分》](https://www.udemy.com/course/javascriptjs/)
