@@ -86,10 +86,10 @@ Bot 新增後可以更改它的 USERNAME、ICON（頭貼），修改完畢後記
 * Node.js 版本 v14.0.0 以上
 * 編輯器 (推薦 Visual Studio Code)
 
-### 1. 安裝 [Discord.js](https://github.com/discordjs/discord.js/)
+### 1. 安裝 [Discord.js](https://github.com/discordjs/discord.js/) v12.5.3
 
-```
-$ npm install discord.js
+```bash
+$ npm install discord.js@12.5.3
 ```
 
 ### 2. 新增 token.json
@@ -136,7 +136,7 @@ client.login(token);
 
 讓機器人上線吧！
 
-```
+```bash
 $ node discord.js
 ```
 
@@ -145,6 +145,16 @@ $ node discord.js
 測試一下效果：
 
 ![](/images/dc-bot/01/10.jpg)
+
+## 2021/09/22 更新
+
+本篇文章之前預設安裝最新版 discord.js，而 discord.js 已於 2021/08/06 發布 v13 版本，寫法完全翻新，因此舊程式碼無法起作用。
+
+請使用舊的 v12.5.3 版本。
+
+```bash
+$ npm install discord.js@12.5.3
+```
 
 -------
 

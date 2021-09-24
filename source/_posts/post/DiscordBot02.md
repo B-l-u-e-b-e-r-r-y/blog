@@ -19,25 +19,34 @@ categories:
 
 ## 實作
 
+必備：
+
+* Node.js 版本 v14.0.0 以上
+* 編輯器 (推薦 Visual Studio Code)
+
 ### 安裝套件
 
-要完成這些功能，除了需要 [Discord.js](https://github.com/discordjs/discord.js/) 套件以外，還必須安裝下面這三個套件。
+* #### [Discord.js](https://github.com/discordjs/discord.js/) v12.5.3
+Discord 機器人的核心套件
+```bash
+$ npm install discord.js@12.5.3
+```
 
 * #### [ffmpeg-static](https://github.com/eugeneware/ffmpeg-static)
 執行音樂的轉檔、串流功能
-```
+```bash
 $ npm install ffmpeg-static
 ```
 
 * #### [discordjs/opus](https://github.com/discordjs/opus)
 Opus 編碼器
-```
+```bash
 $ npm install @discordjs/opus
 ```
 
 * #### [node-ytdl-core](https://github.com/fent/node-ytdl-core)
 執行下載 YouTube 影片的功能
-```
+```bash
 $ npm install ytdl-core
 ```
 
@@ -351,7 +360,7 @@ client.login(token);
 
 可以自行玩玩看。
 
-```
+```bash
 $ node discord.js
 ```
 
@@ -359,11 +368,14 @@ $ node discord.js
 
 本來想把程式碼切開在文中講解，但是發現這樣寫起來會篇幅太長而且雜亂，所以就乾脆把註解寫在 code 裡面。
 
-本次音樂機器人的 [Github Repository](https://github.com/B-l-u-e-b-e-r-r-y/Discord-Bot-02)，可以自行 clone 下來研究或修改。
+**本次音樂機器人的 [Github Repository](https://github.com/B-l-u-e-b-e-r-r-y/Discord-Bot-02)**，可以自行 clone 下來研究或修改。
 
 ## FAQ
 
 這邊蒐集了可能會遇到的問題。
+
+<details>
+<summary>點我展開</summary>
 
 * Q：執行程式後出現 `Error: Cannot find module 'xxx'` 怎麼辦？
 * A：通常那個 `xxx` 是缺少安裝的套件。跑一下安裝套件的指令 `npm i 套件名稱` 應該就正常了。
@@ -374,6 +386,7 @@ $ node discord.js
 * Q：播放音樂時，先 `!!pause` 後再 `!!resume`，機器人沒有恢復播放怎麼辦？
 * A：與 discord.js 和 node.js 版本有關。目前只能等 discord.js 修復或自降 node.js 版本。
 詳細請參考這個 issue：[The function dispatcher.pause() and dispatcher.resume() only works on a second switch #5300](https://github.com/discordjs/discord.js/issues/5300)
+</details>
 
 ### 目前可正常運行的版本（參考用）
 
@@ -383,8 +396,10 @@ $ node discord.js
 * ffmpeg-static: "4.2.8"
 * ytdl-core: "4.8.3"
 
+## 文章更新記錄
 
-## 更新
+<details>
+<summary>點我展開</summary>
 
 ### 2021/01/13 更新
 
@@ -418,9 +433,24 @@ this.isPlaying = {};  // { guild1ID: false, guild2ID: true, ... }
 
 舊朋友如果有遇到問題，請試著更新 [node-ytdl-core](https://github.com/fent/node-ytdl-core) 為最新版本（4.8.3）：
 
-```
+```bash
 npm install ytdl-core@latest
 ```
+
+### 2021/09/22 更新
+
+改為統一使用 v12.5.3 的 discord.js。
+</details>
+
+## 碎碎念
+
+在寫 Discord 機器人系列文章前，完全沒想過會有這麼多人看。
+
+能夠幫助到這麼多人我覺得很開心，有部分讀者遇到問題會在下面發問，我也樂意解答，多數得不到回應，我當成是自己的回答有幫助讀者解決問題。
+
+但是隨著讀者越來越多、問題越來越多，我決定**不再回答重複的問題**，請各位在發問前先看看 FAQ 及下面的留言區，查找有沒有人問過自己遇到的問題。
+
+另外就是......發問時請具備基本禮貌，請尊重願意幫你解答問題的人，感謝配合。
 
 ------------------------------------------
 
